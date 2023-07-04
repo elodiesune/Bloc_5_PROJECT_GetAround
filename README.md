@@ -1,4 +1,22 @@
 =======
+
+# How to read my files
+
+For EDA, please open:
+  - EDA_and_Streamlit/get_around_EDA.ipynb for the whole code
+  - EDA_and_Streamlit/app.py for the streamlit file code
+  - https://getaround-streamlit-elo-c6bfa4d94525.herokuapp.com/ for the hosted version
+
+For Machine Learning model, please open:
+  - Machine_Learning/get_around_model_quali.ipynb for the whole code
+
+For the API, please open:
+  - API/app.py for the code
+  - https://getaround-api-elo-16ab161d9781.herokuapp.com/docs for the hosted API
+
+=======
+
+
 # GetAround Case Study
 
 GetAround is the Airbnb for cars, allowing users to rent cars from individuals for short periods. As a partner of Jedha, GetAround has presented a challenge related to optimizing the rental process and pricing.
