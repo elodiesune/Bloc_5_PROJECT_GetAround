@@ -1,173 +1,81 @@
+=======
+# GetAround Case Study
+
+GetAround is the Airbnb for cars, allowing users to rent cars from individuals for short periods. As a partner of Jedha, GetAround has presented a challenge related to optimizing the rental process and pricing.
+
+## Project Overview
+
+The project involves analyzing data from GetAround to address specific challenges and provide insights. The main objectives are:
+
+1. Implementing a minimum delay between rentals to reduce late returns and improve customer satisfaction.
+2. Analyzing the impact of the minimum delay on owner revenues and the number of affected rentals.
+3. Examining the frequency of late check-ins and their impact on subsequent rentals.
+4. Assessing the number of problematic cases the minimum delay would solve based on different thresholds and scopes.
+
+Additionally, the Data Science team is working on pricing optimization and requires an API endpoint to provide car price predictions.
+
+## Dashboard
+
+A web dashboard is developed to assist the Product Management team in addressing the challenges mentioned above. Streamlit or any other suitable technology can be used to create the dashboard.
+
+## Machine Learning - /predict Endpoint
+
+In addition to the dashboard, a machine learning model is built to optimize car prices for GetAround's owners. The model provides predicted prices through an API endpoint. The endpoint follows this format: `https://your-url.com/predict`.
+
+- Endpoint: `/predict`
+- Method: POST
+- Input: JSON data
+- Output: JSON response with a `prediction` key
+
+Example input:
 {
- "cells": [
-  {
-   "attachments": {},
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "![snap](https://lever-client-logos.s3.amazonaws.com/2bd4cdf9-37f2-497f-9096-c2793296a75f-1568844229943.png)\n",
-    "\n",
-    "# GetAround \n",
-    "\n",
-    "[GetAround](https://www.getaround.com/?wpsrc=Google+Organic+Search) is the Airbnb for cars. You can rent cars from any person for a few hours to a few days! Founded in 2009, this company has known rapid growth. In 2019, they count over 5 million users and about 20K available cars worldwide. \n",
-    "\n",
-    "As Jedha's partner, they offered this great challenges: \n",
-    "\n",
-    "## Context \n",
-    "\n",
-    "When renting a car, our users have to complete a checkin flow at the beginning of the rental and a checkout flow at the end of the rental in order to:\n",
-    "\n",
-    "* Assess the state of the car and notify other parties of pre-existing damages or damages that occurred during the rental.\n",
-    "* Compare fuel levels.\n",
-    "* Measure how many kilometers were driven.\n",
-    "\n",
-    "The checkin and checkout of our rentals can be done with three distinct flows:\n",
-    "* **📱 Mobile** rental agreement on native apps: driver and owner meet and both sign the rental agreement on the owner’s smartphone\n",
-    "* **Connect:** the driver doesn’t meet the owner and opens the car with his smartphone\n",
-    "* **📝 Paper** contract (negligible)\n",
-    "\n",
-    "## Project 🚧\n",
-    "\n",
-    "For this case study, we suggest that you put yourselves in our shoes, and run an analysis we made back in 2017 🔮 🪄\n",
-    "\n",
-    "When using Getaround, drivers book cars for a specific time period, from an hour to a few days long. They are supposed to bring back the car on time, but it happens from time to time that drivers are late for the checkout.\n",
-    "\n",
-    "Late returns at checkout can generate high friction for the next driver if the car was supposed to be rented again on the same day : Customer service often reports users unsatisfied because they had to wait for the car to come back from the previous rental or users that even had to cancel their rental because the car wasn’t returned on time.\n",
-    "\n",
-    "\n",
-    "## Goals 🎯\n",
-    "\n",
-    "In order to mitigate those issues we’ve decided to implement a minimum delay between two rentals. A car won’t be displayed in the search results if the requested checkin or checkout times are too close from an already booked rental.\n",
-    "\n",
-    "It solves the late checkout issue but also potentially hurts Getaround/owners revenues: we need to find the right trade off.\n",
-    "\n",
-    "**Our Product Manager still needs to decide:**\n",
-    "* **threshold:** how long should the minimum delay be?\n",
-    "* **scope:** should we enable the feature for all cars?, only Connect cars?\n",
-    "\n",
-    "In order to help them make the right decision, they are asking you for some data insights. Here are the first analyses they could think of, to kickstart the discussion. Don’t hesitate to perform additional analysis that you find relevant.\n",
-    "\n",
-    "* Which share of our owner’s revenue would potentially be affected by the feature?\n",
-    "* How many rentals would be affected by the feature depending on the threshold and scope we choose?\n",
-    "* How often are drivers late for the next check-in? How does it impact the next driver?\n",
-    "* How many problematic cases will it solve depending on the chosen threshold and scope?\n",
-    "\n",
-    "### Web dashboard\n",
-    "\n",
-    "First build a dashboard that will help the product Management team with the above questions. You can use `streamlit` or any other technology that you see fit. \n",
-    "\n",
-    "\n",
-    "### Machine Learning - `/predict` endpoint\n",
-    "\n",
-    "In addition to the above question, the Data Science team is working on *pricing optimization*. They have gathered some data to suggest optimum prices for car owners using Machine Learning. \n",
-    "\n",
-    "You should provide at least **one endpoint** `/predict`. The full URL would look like something like this: `https://your-url.com/predict`.\n",
-    "\n",
-    "This endpoint accepts **POST method** with JSON input data and it should return the predictions. We assume **inputs will be always well formatted**. It means you do not have to manage errors. We leave the error handling as a bonus.\n",
-    "\n",
-    "Input example:\n",
-    "\n",
-    "```\n",
-    "{\n",
-    "  \"input\": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8], [7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]\n",
-    "}\n",
-    "```\n",
-    "\n",
-    "The response should be a JSON with one key `prediction` corresponding to the prediction.\n",
-    "\n",
-    "Response example:\n",
-    "\n",
-    "```\n",
-    "{\n",
-    "  \"prediction\":[6,6]\n",
-    "}\n",
-    "```\n",
-    "\n",
-    "### Documentation page\n",
-    "\n",
-    "You need to provide the users with a **documentation** about your API.\n",
-    "\n",
-    "It has to be located at the `/docs` of your website. If we take the URL example above, it should be located directly at `https://your-url.com/docs`).\n",
-    "\n",
-    "This small documentation should at least include:\n",
-    "- An h1 title: the title is up to you.\n",
-    "- A description of every endpoints the user can call with the endpoint name, the HTTP method, the required input and the expected output (you can give example).\n",
-    "\n",
-    "You are free to add other any other relevant informations and style your HTML as you wish.\n",
-    "\n",
-    "### Online production\n",
-    "\n",
-    "You have to **host your API online**. We recommend you to use [Heroku](https://www.heroku.com/) as it is free of charge. But you are free to choose any other hosting provider.\n",
-    "\n",
-    "## Helpers 🦮\n",
-    "\n",
-    "To help you start with this project we provide you with some pieces of advice:\n",
-    "\n",
-    "* Spend some time understanding data \n",
-    "* Don't overlook Data Analysis part, there is a lot of insights to find out. \n",
-    "* Data Analysis should take 2 to 5 hours \n",
-    "* Machine Learning should take 3 to 6 hours \n",
-    "* You are not obligated to use libraries to handle your Machine Learning workflow like `mlflow` but we definitely advise you to do so.\n",
-    "\n",
-    "\n",
-    "### Share your code\n",
-    "\n",
-    "In order to get evaluation, do not forget to share your code on a [Github](https://github.com/) repository. You can create a [`README.md`](https://guides.github.com/features/mastering-markdown/) file with a quick description about this project, how to setup locally and the online URL.\n",
-    "\n",
-    "## Deliverable 📬\n",
-    "\n",
-    "To complete this project, you should deliver:\n",
-    "\n",
-    "- A **dashboard** in production (accessible via a web page for example)\n",
-    "- The **whole code** stored in a **Github repository**. You will include the repository's URL.\n",
-    "- An **documented online API** on Heroku server (or any other provider you choose) containing at least **one `/predict` endpoint** that respects the technical description above. We should be able to request the API endpoint `/predict` using `curl`:\n",
-    "\n",
-    "```shell\n",
-    "$ curl -i -H \"Content-Type: application/json\" -X POST -d '{\"input\": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]}' http://your-url/predict\n",
-    "```\n",
-    "\n",
-    "Or Python:\n",
-    "\n",
-    "```python\n",
-    "import requests\n",
-    "\n",
-    "response = requests.post(\"https://your-url/predict\", json={\n",
-    "    \"input\": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]\n",
-    "})\n",
-    "print(response.json())\n",
-    "```\n",
-    "\n",
-    "## Data \n",
-    "\n",
-    "There are two files you need to download: \n",
-    "\n",
-    "* [Delay Analysis](https://full-stack-assets.s3.eu-west-3.amazonaws.com/Deployment/get_around_delay_analysis.xlsx) 👈 Data Analysis \n",
-    "* [Pricing Optimization](https://full-stack-assets.s3.eu-west-3.amazonaws.com/Deployment/get_around_pricing_project.csv) 👈 Machine Learning \n",
-    "\n",
-    "\n",
-    "Happy coding! 👩‍💻"
-   ]
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.8.5"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 4
+  "input": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]
 }
+
+Example output:
+{
+"prediction": [6]
+}
+
+
+## Documentation Page
+
+A documentation page is provided for the API, accessible at `/docs` of the hosted website (e.g., `https://your-url.com/docs`). The documentation includes:
+
+- Title: A descriptive title.
+- Endpoint Descriptions: Details of each available endpoint, including the endpoint name, HTTP method, required input, and expected output.
+
+Styling and additional relevant information can be included in the documentation.
+
+## Online Production
+
+The API and dashboard should be hosted online to facilitate access and evaluation. Heroku is recommended as a hosting provider, but any other provider can be used.
+
+## Helpers
+
+To aid in the project, the following tips are provided:
+
+- Spend time understanding the data.
+- Pay attention to data analysis, as valuable insights can be derived.
+- Allocate 2 to 5 hours for data analysis and 3 to 6 hours for machine learning tasks.
+- Consider using libraries like MLflow to manage the machine learning workflow.
+
+## Deliverables
+
+To complete the project, the following deliverables are expected:
+
+- A production-ready dashboard accessible via a web page.
+- The entire code stored in a GitHub repository, with the repository URL provided.
+- A documented online API hosted on Heroku (or another chosen provider) that includes at least one `/predict` endpoint. The API should follow the technical description provided.
+
+To evaluate the project, ensure the code is shared in a GitHub repository with a README.md file that includes a brief project description, instructions for local setup, and the online URL for the deployed project.
+
+## Data
+
+Two data files are provided for the project:
+
+1. Delay Analysis: Contains data for data analysis tasks.
+2. Pricing Optimization: Contains data for machine learning tasks.
+
+Happy coding! 👩‍💻
+>>>>>>> b73fb29d4c9bf81fa87bc91635f378ab1d9a25dd
