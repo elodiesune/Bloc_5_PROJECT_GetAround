@@ -293,7 +293,7 @@ An documented online API on Heroku server (or any other provider you choose) con
         # Distribution of time gaps
         fig = px.histogram(df_timegaps, x='time_delta_with_previous_rental_in_minutes')
         # Add the average line
-        fig.add_trace(go.Scatter(x=[average_time_gap, average_time_gap],y=[0, 350],mode='lines',line=dict(color='red', dash='dash'),name='Average'))
+        fig.add_trace(go.Scatter(x=[average_time_gap, average_time_gap],y=[0, 350],mode='lines',line=dict(color='red', dash='dash'),name='Average (5h)'))
         fig.update_layout(title="Distribution of Time Gaps planned between Consecutive Rentals",xaxis_title="Time Gap (minutes)",yaxis_title="Count",showlegend=True)
         st.plotly_chart(fig)
         st.write(f"In average, there is {round(average_time_gap / 60)}h time gap between consecutive rentals.")
