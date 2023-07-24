@@ -210,7 +210,7 @@ An documented online API on Heroku server (or any other provider you choose) con
 
         # All users
         bins = [-float('inf'), 0, float('inf')]
-        labels = ['Users in advance', 'Delayed users']
+        labels = ['Users on time or in advance', 'Delayed users']
         delay_bins = pd.cut(delay_df.delay_at_checkout_in_minutes, bins=bins, labels=labels)
         section_counts = delay_bins.value_counts()
         # Positive delays only
