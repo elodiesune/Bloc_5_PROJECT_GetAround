@@ -22,7 +22,8 @@ st.set_page_config(page_title="VroumVroum", page_icon="", layout="wide")
 
 delay_df = pd.read_excel('get_around_delay_analysis.xlsx',sheet_name='rentals_data')
 pricing = pd.read_csv('get_around_pricing_project.csv',index_col=0)
-
+pricing = pricing[pricing['mileage'] >= 0]
+pricing = pricing[pricing['engine_power'] > 0]
 
 
 # ---------------------------------------   MENU DEROULANT    --------------------------------------   

@@ -5,3 +5,5 @@ xgboost_opt.joblib
 model_prediction_test.ipynb
 Stacking_model.joblib
 get_around_model_quali_no-tire.ipynb
+Models
+catboost_info
