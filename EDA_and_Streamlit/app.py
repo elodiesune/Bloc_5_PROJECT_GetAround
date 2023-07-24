@@ -539,8 +539,8 @@ An documented online API on Heroku server (or any other provider you choose) con
                 # webbrowser.open_new_tab("https://getaround-api-elo-16ab161d9781.herokuapp.com/docs")
 
                 from bokeh.models.widgets import Div
-                js = "window.open('https://getaround-api-elo-16ab161d9781.herokuapp.com/docs')"
-                js = "window.location.href = 'https://getaround-api-elo-16ab161d9781.herokuapp.com/docs'"
+                js = "window.open('https://getaround-api-elo-f1df83a28de6.herokuapp.com/docs')"
+                js = "window.location.href = 'https://getaround-api-elo-f1df83a28de6.herokuapp.com/docs'"
                 html = '<img src onerror="{}">'.format(js)
                 div = Div(text=html)
                 st.bokeh_chart(div)
