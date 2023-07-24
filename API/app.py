@@ -6,7 +6,6 @@ import numpy as np
 import joblib
 from typing import List
 import json
-import 
 
 description = """
 # How many peanuts per day cost my car ? #
@@ -72,7 +71,7 @@ Here is the answer that you would receive for the example above:
 You can get your predictions via python:
 
 import requests\n
-response = requests.post("https://getaround-api-elo-16ab161d9781.herokuapp.com/predict", json={'car_options': [{...}, {...}]})
+response = requests.post("https://getaround-api-elo-f1df83a28de6.herokuapp.com/predict", json={'car_options': [{...}, {...}]})
 print(response.json())
 
 """
@@ -112,8 +111,8 @@ class CarOptions(BaseModel):
 # and the last one is doing the prediction.
 
 def load_model():
-    model_file = joblib.load('Stacking_model.joblib')
-    model = model_file['ensemble']
+    model_file = joblib.load('CatBoost_model.joblib')
+    model = model_file['model']
     feature_encoder = model_file['feature_encoder']
     scaler = model_file['scaler']   
     return model, feature_encoder, scaler

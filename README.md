@@ -5,14 +5,14 @@
 For EDA, please open:
   - EDA_and_Streamlit/get_around_EDA.ipynb for the whole code
   - EDA_and_Streamlit/app.py for the streamlit file code
-  - https://getaround-streamlit-elo-c6bfa4d94525.herokuapp.com/ for the hosted version
+  - https://getaround-streamlit-elo-59c51a01702a.herokuapp.com/ for the hosted version
 
 For Machine Learning model, please open:
   - Machine_Learning/get_around_model_quali.ipynb for the whole code
 
 For the API, please open:
   - API/app.py for the code
-  - https://getaround-api-elo-16ab161d9781.herokuapp.com/docs for the hosted API
+  - https://getaround-api-elo-f1df83a28de6.herokuapp.com/docs for the hosted API
 
 =======
 
