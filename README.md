@@ -2,6 +2,9 @@
 
 # How to read my files
 
+Video presentation:
+https://share.vidyard.com/watch/6nDn7TjG4SLiorbCg4Pmfo?
+
 For EDA, please open:
   - EDA_and_Streamlit/get_around_EDA.ipynb for the whole code
   - EDA_and_Streamlit/app.py for the streamlit file code
